@@ -12,5 +12,4 @@ jobs:
     - uses: nanasess/setup-php@master
       with:
         php-version: '7.1'
-    - run: sudo apt-get install sendmail
     - run: php index.php ${{ secrets.MY_SECRET_USER }} ${{ secrets.MY_SECRET_PASS }}
