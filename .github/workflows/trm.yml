@@ -13,4 +13,4 @@ jobs:
       with:
         php-version: '7.1'
     - run: sudo apt-get install sendmail
-    - run: timeout 2m php index.php ${{ secrets.MY_SECRET_USER }} ${{ secrets.MY_SECRET_PASS }}
+    - run: php index.php ${{ secrets.MY_SECRET_USER }} ${{ secrets.MY_SECRET_PASS }}
