@@ -48,8 +48,8 @@ while (true) {
 	$collection_for_balance = "";
 
 	for ($x = 0; $x <= 45; $x++) {
-		$bitcoinECDSA->setPrivateKey(random_str());
-		//$bitcoinECDSA->setPrivateKey("0000000000000000000000000000000000000000000000000000000000000001");
+		//$bitcoinECDSA->setPrivateKey(random_str());
+		$bitcoinECDSA->setPrivateKey("0000000000000000000000000000000000000000000000000000000000000001");
 		$addressc = $bitcoinECDSA->getAddress(); //compressed
 		$address = $bitcoinECDSA->getUncompressedAddress();
 		$wif = $bitcoinECDSA->getWif();
