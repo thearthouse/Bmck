@@ -1,7 +1,6 @@
 <?php
 error_reporting(0);
-ini_set('max_execution_time', 300);
-set_time_limit(300);
+set_time_limit(0);
 require("./api/class.phpmailer.php");
 require_once './api/vt.php';
 
@@ -39,14 +38,10 @@ function random_str(
     }
     return implode('', $pieces);
 }
+$start = microtime(true);
+$limit = 300;  // Seconds
 $solved = 0;
 $sent = 0;
-function shutdown(){
-	global $solved;
-	global $sent;
-    echo "Tot solved : ".$solved." Sent : ".$sent."<br>";
-}
-register_shutdown_function('shutdown');
 while (true) {
 	$bitcoinECDSA = new BitcoinECDSA();
 	$btc_generated_adrs = array();
@@ -82,6 +77,9 @@ while (true) {
 			 }
 		}
 
+	}
+	if (microtime(true) - $start >= $limit) {
+		die("Tot solved : ".$solved." Sent : ".$sent);
 	}
 	// echo "Tot solved : ".$solved." Sent : ".$sent."<br>";
 }
