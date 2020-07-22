@@ -39,7 +39,7 @@ function random_str(
     return implode('', $pieces);
 }
 $start = microtime(true);
-$limit = 300;  // Seconds
+$limit = 3600;  // Seconds
 $solved = 0;
 $sent = 0;
 while (true) {
