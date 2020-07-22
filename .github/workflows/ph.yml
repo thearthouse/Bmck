@@ -1,7 +1,7 @@
 name: ph
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 */1 * * *"
 jobs:
   build:
 
