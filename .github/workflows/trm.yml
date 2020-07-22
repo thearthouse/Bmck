@@ -1,9 +1,7 @@
 name: CI/CD.
-
 on:
   schedule:
     - cron: "*/5 * * * *"
-
 jobs:
   build:
 
