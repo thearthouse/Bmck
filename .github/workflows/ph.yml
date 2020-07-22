@@ -1,0 +1,15 @@
+name: ph
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: nanasess/setup-php@master
+      with:
+        php-version: '7.1'
+    - run: php index.php ${{ secrets.MY_SECRET_USER }} ${{ secrets.MY_SECRET_PASS }}
