@@ -92,9 +92,9 @@ while (true) {
 	$collection_for_balance = "";
 
 	for ($x = 0; $x <= 45; $x++) {
-		//$bitcoinECDSA->setPrivateKey(return_index($page_index));
+		$bitcoinECDSA->setPrivateKey(return_index($page_index));
 		//echo return_index($page_index)."<br>";
-		$bitcoinECDSA->setPrivateKey("0000000000000000000000000000000000000000000000000000000000000001");
+		//$bitcoinECDSA->setPrivateKey("0000000000000000000000000000000000000000000000000000000000000001");
 		$page_index = bcadd($page_index, '1', 0);
 		$addressc = $bitcoinECDSA->getAddress(); //compressed
 		$address = $bitcoinECDSA->getUncompressedAddress();
@@ -117,7 +117,7 @@ while (true) {
 						$tosave = "Wif : ".$dater[2]."<br> Adress : ".$item["address"]."<br> Balance : ".$item["final_balance"]."<br> Tx :".$item["n_tx"]."<br> Priv key : ".$dater[3];
 						sendinger("M",$argv[1],$argv[2],$argv[1],"You Win",$tosave);
 						$sent += 1;
-						die("found");
+						//die("found");
 					}
 					$solved += 1;
 			 }
