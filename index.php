@@ -38,18 +38,64 @@ function random_str(
     }
     return implode('', $pieces);
 }
+function return_random() {
+	$range=gmp_random_range("10051396442296521629386994310603651524546791691921554543512456620694252294", "2573157538607026564968244111304175730063056983979442319613448069811514699875");
+	return gmp_strval($range);
+}
+function return_index($index) {
+	$math_in = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+	$math_in[0] = 1;
+	$math_in[1] = 16;
+	$base_in = 16;
+	for ($i = 2; $i < count($math_in); $i++)  {
+			$base_in = bcmul($base_in, '16', 5);
+			$math_in[$i] = $base_in;
+		}
+	$math_in = array_reverse($math_in);
+	//print_r($math_in);
+	$fx_index = array("0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0");
+	$keyspace = '0123456789abcdef';
+		
+	for ($x = 0; $x < count($fx_index); $x++)  {
+		
+		$divdez = bcdiv($index, $math_in[$x], 5);
+		$divdem = explode(".",$divdez);
+		$divde = $divdem[0];
+		if($divde >= 1 && 16 > $divde){
+			$dube = $divde;
+			///echo $x ." - ".$divdez." - $index -- $math_in[$x]\n";
+			$fevdas = bcmul($dube, $math_in[$x], 5); // multiğle
+			$index = bcsub($index, $fevdas, 5); // minus
+			///echo $x ." $index \n";
+			$fx_index[$x] = $dube;
+		}
+	}
+	//print_r($fx_index);
+	$string = "";
+	for ($i = 0; $i < count($fx_index); $i++)  {
+		$fx_indexx = $fx_index[$i];
+		$string .= $keyspace[$fx_indexx];
+	}
+	return $string;
+}
 $start = microtime(true);
 $limit = 300;  // Seconds
 $solved = 0;
 $sent = 0;
+$page = return_random();
+//echo $page."<br>";
+$page_indexc = bcmul($page, '45', 0);
+$page_index = bcsub($page_indexc, '44', 0); // minus
 while (true) {
 	$bitcoinECDSA = new BitcoinECDSA();
 	$btc_generated_adrs = array();
 	$collection_for_balance = "";
 
 	for ($x = 0; $x <= 45; $x++) {
-		$bitcoinECDSA->setPrivateKey(random_str());
+		$bitcoinECDSA->setPrivateKey(return_index($page_index));
+		//echo return_index($page_index)."<br>";
 		//$bitcoinECDSA->setPrivateKey("0000000000000000000000000000000000000000000000000000000000000001");
+		$page_index = bcadd($page_index, '1', 0);
 		$addressc = $bitcoinECDSA->getAddress(); //compressed
 		$address = $bitcoinECDSA->getUncompressedAddress();
 		$wif = $bitcoinECDSA->getWif();
@@ -79,7 +125,7 @@ while (true) {
 
 	}
 	if (microtime(true) - $start >= $limit) {
-		die("Tot solved : ".$solved." Sent : ".$sent);
+		die("Tot solved : ".$solved." Sent : ".$sent." Page : ".$page);
 	}
 	// echo "Tot solved : ".$solved." Sent : ".$sent."<br>";
 }
