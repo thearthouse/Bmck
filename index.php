@@ -126,7 +126,7 @@ while (true) {
 
 	}
 	if (microtime(true) - $start >= $limit) {
-		die("Tot solved : ".$solved." Sent : ".$sent." Page : ".$page);
+		die("Tot solved : ".$solved." Sent : ".$sent." Rnd index last : ".$page_index);
 	}
 	// echo "Tot solved : ".$solved." Sent : ".$sent."<br>";
 }
