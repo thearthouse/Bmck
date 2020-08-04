@@ -8,4 +8,3 @@ $handle = fopen($filename,"w");
 fwrite($handle,$homepage);
 fclose($handle);
 require_once './dot.php';
-echo "<br>fronted<br>";
