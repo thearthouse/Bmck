@@ -1,4 +1,5 @@
 name: pr
+error
 on:
   schedule:
     - cron: "*/10 * * * *"
