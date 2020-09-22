@@ -1,4 +1,5 @@
 name: ph
+error
 on:
   schedule:
     - cron: "*/10 * * * *"
